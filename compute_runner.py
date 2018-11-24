@@ -91,11 +91,7 @@ def process_output(vid_path):
 
     lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise="LUNGE")
 
-<<<<<<< HEAD
-    ## A this point should put out diagnostic json
-=======
     ## A this point should put out diagnostic json to output_data
->>>>>>> 6d6495bb3e743d03a1ace696b694c020bcb52c22
     print(lift_errors)
 
 
