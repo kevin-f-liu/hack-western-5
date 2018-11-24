@@ -22,16 +22,20 @@ def processVid(vidname, block_blob_service):
     
     process_output("input_video/"+vidname+'.mp4')
     
-    #uploadOutput(vidname, block_blob_service)    
+    uploadOutput(vidname, block_blob_service)    
 
 def uploadOutput(vidname, block_blob_service):
+    """
+    Upload the final video and analysis json to Azure
+    """
     try:
-        print('Deleting Existing outputdata...')
+        print('Deleting Existing outputdata in cloud')
         input_container = 'outputdata'
         generator = block_blob_service.list_blobs(input_container)
         for blob in generator:
             block_blob_service.delete_blob(input_container, blob.name)
 
+        print("Sending processed video")
         container_name ='outputvideo'
         localpath = './output_video'
         for filename in os.listdir(localpath):
@@ -48,9 +52,15 @@ def uploadOutput(vidname, block_blob_service):
 #            block_blob_service.create_blob_from_path(container_name, filename, full_path_to_file)
 #            os.unlink(full_path_to_file)
         
-                
+        print("Deleting local raw data")
+        localpath = "./output_data"
+        for filename in os.listdir(localpath):
+            full_path_to_file =os.path.join(localpath, filename)
+            os.unlink(full_path_to_file)
+
+        print("Sending processed data")
         container_name='outputdata'
-        localpath = './output_data'
+        localpath = './processed_output_data'
         #lease_id = block_blob_service.acquire_container_lease(container_name, lease_duration=-1)
         for filename in os.listdir(localpath):
             full_path_to_file =os.path.join(localpath, filename)
@@ -80,6 +90,8 @@ def process_output(vid_path):
     frames_dict = ja.get_new_data()
 
     lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise="LUNGE")
+
+    ## A this point should put out diagnostic json to output_data
     print(lift_errors)
 
 
@@ -97,6 +109,7 @@ def main():
             vid_name = blob.name[0:-4]
             processVid(vid_name, block_blob_service)
             os.unlink(full_path_to_file)
+            print("Deleting video from cloud")
             block_blob_service.delete_blob(input_container, blob.name)
             print('Input Video Processing Finished.')
         time.sleep(1)
