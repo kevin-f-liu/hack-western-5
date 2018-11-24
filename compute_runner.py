@@ -79,7 +79,7 @@ def process_output(vid_path):
 
     frames_dict = ja.get_new_data()
 
-    lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise="SQUAT")
+    lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise="LUNGE")
     print(lift_errors)
 
 

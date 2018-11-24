@@ -10,7 +10,7 @@ class FormCheck:
         self.height = height
         self.orientation = None
         self.exercises = {
-            "SQUAT": self.check_squat,
+            "LUNGE": self.check_squat,
             "DEADLIFT": self.check_deadlift,
             "BENCH": self.check_bench
         }
