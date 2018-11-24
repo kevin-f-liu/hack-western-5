@@ -1,0 +1,9 @@
+.vscode/*
+secrets.json
+exercises/*
+input_video/*
+output/*
+output_data/*
+output_images/*
+output_video/*
+models/*
