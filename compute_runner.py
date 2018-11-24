@@ -64,7 +64,7 @@ def uploadOutput(vidname, block_blob_service):
 
 
 def process_output(vid_path):
-    ja = JsonAggregator("ouput_data")
+    ja = JsonAggregator("output_data")
     ppm = PoseProcessingManager()
     height = 0
     width = 0
