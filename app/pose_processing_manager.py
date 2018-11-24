@@ -10,11 +10,11 @@ class PoseProcessingManager:
         self.account_name = self.secrets.get("azure_account_name")
         self.block_blob_service = BlockBlobService(account_name=self.account_name, account_key=self.account_key)
 
-    def send_stream(self, file):
+    def send_stream(self, filename, file):
         """
         Send video file stream
         """
-        self.block_blob_service.create_blob_from_stream("inputvideo", file)
+        self.block_blob_service.create_blob_from_stream("inputvideo", filename, file)
     
     def send(self, localpath):
         """

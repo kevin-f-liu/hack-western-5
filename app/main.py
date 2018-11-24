@@ -94,7 +94,7 @@ def uploaded_file():
             ppm = PoseProcessingManager()
             fc = FormCheck(int(width), int(height))
 
-            ppm.send_stream(f)
+            ppm.send_stream(video, f)
             ppm.poll()
 
             analyzed_video = ""
