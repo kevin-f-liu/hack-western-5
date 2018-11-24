@@ -1,9 +1,8 @@
 
 from flask import Flask, render_template, request, redirect, make_response
 from werkzeug import secure_filename
-from flask_bootstrap import Bootstrap
 import hashlib
-import cv2
+# import cv2
 # import pdfkit
 import os
 
@@ -75,13 +74,13 @@ def uploaded_file():
             vid_path = os.path.join("output_video", video)
             f.save(vid_path)
             select_value = request.form.get('select_value')
-            vidcap = cv2.VideoCapture(vid_path)
+            #vidcap = cv2.VideoCapture(vid_path)
 
             width = 0
             height = 0
-            if vidcap.isOpened():
-                width = vidcap.get(3)
-                height = vidcap.get(4)
+            #if vidcap.isOpened():
+            #    width = vidcap.get(3)
+            #    height = vidcap.get(4)
 
             ja = JsonAggregator("input_data")
             ppm = PoseProcessingManager()
@@ -100,14 +99,14 @@ def uploaded_file():
             lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise=select_value)
             print(lift_errors)
             
-            vidcap = cv2.VideoCapture(analyzed_video)
-            success,image = vidcap.read()
+            #vidcap = cv2.VideoCapture(analyzed_video)
+            #success,image = vidcap.read()
             count = 0
 
             while success:  
-                success,image = vidcap.read()
-                if count % 10 == 0:
-                    cv2.imwrite("./static/" + video_hash + "frame%d.jpg" % int(count / 10), image)
+            #    success,image = vidcap.read()
+            #    if count % 10 == 0:
+            #        cv2.imwrite("./static/" + video_hash + "frame%d.jpg" % int(count / 10), image)
 
                 count += 1
             
