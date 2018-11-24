@@ -1,0 +1,2 @@
+﻿OpenPose version 1.4.0 (GPU release), from:
+- https://github.com/CMU-Perceptual-Computing-Lab/openpose/releases/tag/v1.4.0
