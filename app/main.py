@@ -76,6 +76,7 @@ def uploaded_file():
     if request.method == 'POST':
      
         f = request.files['file']
+        print("GOT A FILE!")
         video = f.filename
         if video:
             video_hash = str(int(hashlib.sha1(str(video).encode()).hexdigest(), 16) % (10 ** 8))
@@ -105,7 +106,7 @@ def uploaded_file():
             frames_dict = ja.get_new_data()
 
             #lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise=select_value)
-            print(lift_errors)
+            #print(lift_errors)
             
             #vidcap = cv2.VideoCapture(analyzed_video)
             #success,image = vidcap.read()
@@ -118,9 +119,9 @@ def uploaded_file():
 
             #    count += 1
             
-            tips, failures, good_lift = tips_for_exercises(lift_errors)
+            #tips, failures, good_lift = tips_for_exercises(lift_errors)
 
-            return render_template('upload.html', video=video_hash, select_value=select_value, count=count, tips=tips, failures=failures, good_lift=good_lift)
+            #return render_template('upload.html', video=video_hash, select_value=select_value, count=count, tips=tips, failures=failures, good_lift=good_lift)
 
     return render_template('index.html', error="Please Submit A File!")
 
