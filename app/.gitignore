@@ -1,0 +1,9 @@
+input_data/*
+input_images/*
+input_video/*
+
+output_video/*
+
+secrets.json
+
+.DS_Store

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Form Check</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+
+  <!-- css -->
+  <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/prettyPhoto.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+
+  <!-- Theme skin -->
+  <link href="{{ url_for('static', filename='color/default.css') }}" rel="stylesheet" />
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+  <link rel="shortcut icon" href="ico/favicon.png" />
+
+  <!-- =======================================================
+    Theme Name: Remember
+    Theme URL: https://bootstrapmade.com/remember-free-multipurpose-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+  <body>
+    <div id="wrapper">
+        <!-- start header -->
+        <header>
+            <div class="container">
+    
+    
+            <div class="row nomargin">
+                <div class="span4">
+                <div class="logo">
+                        <h1><a href="/"><img src="{{url_for('static', filename='check_white.png')}}"></a></h1>
+                </div>
+                </div>
+            </div>
+            </div>
+        </header>
+      <div id="intro">
+          <div style="margin-left: 100px">
+              <br/>
+          <h3 styles="padding-top: 10px">Exercise: {{ select_value }}</h3>
+          {% if not good_lift == ""%}
+            <h4 styles="padding-top: 10px">{{ good_lift }}</h4>
+          {% endif %}
+         
+        </div>
+        <div style="margin-left: 100px"> 
+            {% if good_lift == "" %}
+            <h3> Tips to improve your Exercises: </h3>
+            {% for bodyPart in tips %}
+                {% for keys, values in bodyPart.items() %}
+                    <h3 style="text-transform: capitalize"> {{ keys }} </h3>
+                    {% for links in range(values|length) %}
+                        <ul><li><a href={{ values[links] }} target="_blank"> {{ values[links] }} </a></li></ul>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+            {% for fail in failures %}
+            <h3 style="text-transform: capitalize"> No {{fail[0]}} </h3>
+            <h5> {{fail[1]}} </h5>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div id="row_team" style="margin:auto; margin-left:50px;">
+          <!-- <video src="{{url_for('static', filename='text.mp4')}}"  width="320" height="240" controls/> -->
+          {% for frame in range((count / 10)|int) %}
+          <div class="span3">
+            <div class="team-box" style="margin-bottom:20px">
+                <div class="roles aligncenter">
+                    <p class="lead">  Frame {{ frame + 1 }} </p>
+                </div>
+                <a href="#" class="thumbnail"></a>
+                    <img src="{{url_for('static', filename= video + 'frame%d.jpg' % frame)}}" alt="frames" width="300px" height="auto" styles="padding: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/>
+                </a>
+                
+            </div>
+        </div>
+          {% endfor %}
+        </div>
+        <!-- <form action = "http://localhost:5000/uploader/contact/{{video}}/{{select_value}}/{{count}}/{{tips}}" method = "POST" 
+         enctype = "multipart/form-data">
+            <input id="send" type = "submit"/>
+        </form> -->
+      </div>
+      
+      
+    
+  </body>
+</html>

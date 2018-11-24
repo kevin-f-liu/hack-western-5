@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Form Check</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+
+  <!-- css -->
+  <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/prettyPhoto.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+
+  <!-- Theme skin -->
+  <link href="{{ url_for('static', filename='color/default.css') }}" rel="stylesheet" />
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+  <link rel="shortcut icon" href="ico/favicon.png" />
+
+  <!-- =======================================================
+    Theme Name: Remember
+    Theme URL: https://bootstrapmade.com/remember-free-multipurpose-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- start header -->
+    <header>
+      <div class="container">
+
+
+        <div class="row nomargin">
+          <div class="span4">
+            <div class="logo">
+              <h1><a href="/"><i class="icon-tint"></i> Form Check</a></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header -->
+
+    <!-- section intro -->
+    <section id="intro">
+      <div class="intro-content">
+          <form action = "http://localhost:5000/uploader/contact" method = "POST"
+          enctype = "multipart/form-data">
+            <input id="rec" type="text"/>
+            <br/>
+            <input id="sub" class="btn-get-started scrollto" style="border-radius: 6px; border:none;box-shadow: 2px 2px 1px #484848;" type = "submit"/>
+          </form>
+        </div>
+    </section>
+    <!-- /section intro -->
+
+    <footer>
+      <div >
+        <div class="container">
+          <div class="row">
+            <div class="span6">
+              <div class="copyright">
+                <p><span>&copy; Form Check Inc. All right reserved</span></p>
+              </div>
+
+            </div>
+            <div class="span6">
+              <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Remember
+                -->
+                Created by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+
+</html>
