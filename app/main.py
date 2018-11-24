@@ -8,6 +8,8 @@ import os
 
 # from flask_mail import Mail, Message
 
+import cloudstorage as gcs
+
 import weaknesses
 from pose_processing_manager import PoseProcessingManager
 from json_aggregator import JsonAggregator
@@ -78,7 +80,7 @@ def uploaded_file():
         if video:
             video_hash = str(int(hashlib.sha1(str(video).encode()).hexdigest(), 16) % (10 ** 8))
             vid_path = os.path.join("output_video", video)
-            f.save(vid_path)
+            #f.save(vid_path)
             select_value = request.form.get('select_value')
             #vidcap = cv2.VideoCapture(vid_path)
 
@@ -92,7 +94,7 @@ def uploaded_file():
             ppm = PoseProcessingManager()
             fc = FormCheck(int(width), int(height))
 
-            ppm.send("output_video")
+            ppm.send_stream(f)
             ppm.poll()
 
             analyzed_video = ""

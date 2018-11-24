@@ -7,3 +7,4 @@ azure-nspkg==3.0.2
 azure-storage==0.36.0
 flask==1.0.2
 numpy==1.15.4
+cloudstorage==0.8.0
