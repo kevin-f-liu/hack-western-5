@@ -22,11 +22,7 @@ def processVid(vidname, block_blob_service):
     
     process_output("input_video/"+vidname+'.mp4')
     
-    cleanse_inputvid()
-    #uploadOutput(vidname, block_blob_service)
-
-def cleanse_inputvid():
-    
+    #uploadOutput(vidname, block_blob_service)    
 
 def uploadOutput(vidname, block_blob_service):
     try:

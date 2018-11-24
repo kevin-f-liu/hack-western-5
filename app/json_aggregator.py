@@ -35,7 +35,7 @@ class JsonAggregator:
 
 
 if __name__ == "__main__":
-    ja = JsonAggregator("input_data")
+    ja = JsonAggregator("output_data")
     frame_dict = ja.get_new_data()
 
     from form_check import FormCheck
