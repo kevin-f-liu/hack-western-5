@@ -81,7 +81,7 @@ def uploaded_file():
             video_hash = str(int(hashlib.sha1(str(video).encode()).hexdigest(), 16) % (10 ** 8))
             vid_path = os.path.join("output_video", video)
             #f.save(vid_path)
-            select_value = request.form.get('select_value')
+            #select_value = request.form.get('select_value')
             #vidcap = cv2.VideoCapture(vid_path)
 
             width = 0
@@ -104,7 +104,7 @@ def uploaded_file():
 
             frames_dict = ja.get_new_data()
 
-            lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise=select_value)
+            #lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise=select_value)
             print(lift_errors)
             
             #vidcap = cv2.VideoCapture(analyzed_video)
