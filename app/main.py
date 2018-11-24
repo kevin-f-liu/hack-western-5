@@ -16,21 +16,27 @@ from form_check import FormCheck
 app = Flask(__name__)
 # mail = Mail(app)
 
-@app.route('/', methods = ['GET', 'POST'])
-def upload_file():
-    if request.method == "POST":
-        return redirect("/uploader")
-    # Delete everything
-    for filename in os.listdir("input_video"):
-        full_path_to_file = os.path.join('./input_video', filename)
-        os.unlink(full_path_to_file)
-    for filename in os.listdir("input_data"):
-        full_path_to_file = os.path.join('./input_data', filename)
-        os.unlink(full_path_to_file)
-    for filename in os.listdir("output_video"):
-        full_path_to_file = os.path.join('./output_video', filename)
-        os.unlink(full_path_to_file)
-    return render_template('index.html')
+@app.route('/')
+def hello():
+    """Return a friendly HTTP greeting."""
+    return 'Hello World!'
+
+
+# @app.route('/', methods = ['GET', 'POST'])
+# def upload_file():
+#     if request.method == "POST":
+#         return redirect("/uploader")
+#     # Delete everything
+#     for filename in os.listdir("input_video"):
+#         full_path_to_file = os.path.join('./input_video', filename)
+#         os.unlink(full_path_to_file)
+#     for filename in os.listdir("input_data"):
+#         full_path_to_file = os.path.join('./input_data', filename)
+#         os.unlink(full_path_to_file)
+#     for filename in os.listdir("output_video"):
+#         full_path_to_file = os.path.join('./output_video', filename)
+#         os.unlink(full_path_to_file)
+#     return render_template('index.html')
 
 # get tips from data base
 def tips_for_exercises(errors):
@@ -144,4 +150,3 @@ if __name__ == '__main__':
     # Engine, a webserver process such as Gunicorn will serve the app. This
     # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True)
-    
