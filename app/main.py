@@ -97,7 +97,7 @@ def uploaded_file():
             fc = FormCheck(int(width), int(height))
 
             ppm.send_stream(video, f)
-            ppm.poll()
+            # ppm.poll()
 
             analyzed_video = ""
             for filename in os.listdir("input_video"):
@@ -125,29 +125,6 @@ def uploaded_file():
             #return render_template('upload.html', video=video_hash, select_value=select_value, count=count, tips=tips, failures=failures, good_lift=good_lift)
 
     return render_template('index.html', error="Please Submit A File!")
-
-# @app.route("/uploader/contact/<video_hash>/<select_value>/<count>/<tips>", methods = ['GET', 'POST'])
-# # @login_required
-# def contact(video_hash, select_value, count, tips):
-#     if request.method == 'POST':
-#         rendered = render_template('upload.html', video=video_hash, select_value=select_value, count=count, tips=tips)
-#         pdf = pdfkit.from_string(rendered, False)
-#         response = make_response(pdf)
-#         response.headers['Content-Type'] = 'application/pdf'
-#         response.headers['Content-Disposition'] = 'attachment; filename=output.pdf'
-
-#         # rec = request.form('rec')
-
-#         msg = Message("Hello",
-#                     sender="from@example.com",
-#                     recipients=["to@example.com"])
-#         with app.open_resource(response) as fp:
-#             msg.attach(response, "application/pdf", fp.read())
-
-#         mail.send(msg)
-
-#         return redirect('/')
-#     return render_template("contacts.html")
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
