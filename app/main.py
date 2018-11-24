@@ -109,12 +109,12 @@ def uploaded_file():
             #success,image = vidcap.read()
             count = 0
 
-            while success:  
+            #while success:  
             #    success,image = vidcap.read()
             #    if count % 10 == 0:
             #        cv2.imwrite("./static/" + video_hash + "frame%d.jpg" % int(count / 10), image)
 
-                count += 1
+            #    count += 1
             
             tips, failures, good_lift = tips_for_exercises(lift_errors)
 
