@@ -73,6 +73,7 @@ def tips_for_exercises(errors):
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def uploaded_file():
+    print("UPLOAD REQUEST")
     if request.method == 'POST':
      
         f = request.files['file']
