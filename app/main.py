@@ -76,11 +76,12 @@ def transfer_results(ppm):
     """
     Poll for completed data then pull it and store it into database of user
     """
-    [data_content, video_content] = ppm.poll()
+    fw = FirebaseWorker()
 
+    [data_content, video_content] = ppm.poll()
     ppm.transfer_processed_data(data_content)
     ppm.transfer_latest_video_ref(video_content)
-
+    fw.add('', {'state': 2})
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def uploaded_file():
@@ -89,6 +90,8 @@ def uploaded_file():
      
         f = request.files['file']
         print("GOT A FILE!")
+        fw = FirebaseWorker()
+        fw.add('', {'state': 1})
         video = f.filename
         if video:
             video_hash = str(int(hashlib.sha1(str(video).encode()).hexdigest(), 16) % (10 ** 8))
@@ -144,9 +147,18 @@ def get_report():
     Returns the report json from Firebase if available, otherwise return dummy
     """
     fw = FirebaseWorker()
-    data_json = fw.get("data/report")
-    return jsonify(data_json)
+    state = fw.get('state')
+    if request.headers.get('ready_check'):
+        # state is processing when 1
+        return jsonify(state == 1)
 
+    elif request.headers.get('data_request'):
+        # state is 2 when done
+        if state == 2:
+            data_json = fw.get("data/report")
+            return jsonify(data_json)
+        else:
+            return jsonify(False)
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App

@@ -30,10 +30,8 @@ if __name__ == "__main__":
     f = FirebaseWorker()
 
     print(f.get("data/historical"))
-    print(f.add("data/historical", {"asdf": 12}))
-    for i in range(10):
-        f.add_list("data/historical", {"asddf": 12})
-    print(f.get("data/historical"))
+    print(f.add("", {"state": 12}))
+    
 
 
     
