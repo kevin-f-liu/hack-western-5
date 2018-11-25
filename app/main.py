@@ -159,6 +159,7 @@ def get_report():
             return jsonify(data_json)
         else:
             return jsonify(False)
+    return jsonify(False)
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
