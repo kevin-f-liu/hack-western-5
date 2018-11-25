@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect, make_response
+from flask import Flask, render_template, request, redirect, make_response, jsonify
 from werkzeug import secure_filename
 import hashlib
 # import cv2
@@ -14,6 +14,7 @@ import weaknesses
 from pose_processing_manager import PoseProcessingManager
 from json_aggregator import JsonAggregator
 from form_check import FormCheck
+from firebase_worker import FirebaseWorker
 
 app = Flask(__name__)
 # mail = Mail(app)
@@ -136,6 +137,16 @@ def uploaded_file():
             #return render_template('upload.html', video=video_hash, select_value=select_value, count=count, tips=tips, failures=failures, good_lift=good_lift)
 
     return render_template('index.html', error="Please Submit A File!")
+
+@app.route('/report', methods = ['GET'])
+def get_report():
+    """
+    Returns the report json from Firebase if available, otherwise return dummy
+    """
+    fw = FirebaseWorker()
+    data_json = fw.get("data/report")
+    return jsonify(data_json)
+
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
