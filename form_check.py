@@ -90,12 +90,15 @@ class FormCheck:
             lift_errors.append("WEAKHIPS")
         elif avg_rising_sd > tolerance:
             lift_errors.append("WEAKQUADS")
+
+        lift_errors.append("NOBACKLEAN")
+        lift_errors.append("KNEEOVEREXTENTION")
         
         # Check for "goodmorning-ing"
         print(len(lift_errors))
 
         if len(lift_errors) == 0:
-            lift_errors.append("GOODSQUAT")
+            lift_errors.append("GOODLUNGE")
 
         lift_data['errors'] = lift_errors
         return lift_data
