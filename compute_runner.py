@@ -42,7 +42,7 @@ def uploadOutput(vidname, block_blob_service):
         for filename in os.listdir(localpath):
             full_path_to_file =os.path.join(localpath, filename)
             # Upload the created file, use local_file_name for the blob name
-            block_blob_service.create_blob_from_path(container_name, "%s-%s" % (filename, int(time.time() * 1000)), full_path_to_file)
+            block_blob_service.create_blob_from_path(container_name, "%s-%s.avi" % (filename[:-4], int(time.time() * 1000)), full_path_to_file)
             os.unlink(full_path_to_file)
         
 #        container_name='outputimages'
