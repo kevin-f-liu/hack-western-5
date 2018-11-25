@@ -65,6 +65,7 @@ class PoseProcessingManager:
                 self.block_blob_service.get_blob_to_stream("outputdata", blob.name, input_blob) # get it to stream
                 myjson = json.loads(input_blob.getvalue().decode("utf-8"))
             self.fw.add_list('data/historical', myjson)
+            self.fw.add('data/report', myjson)
 
         # for blob in images_content:
         #     full_path_to_file = os.path.join('./input_images', blob.name)
