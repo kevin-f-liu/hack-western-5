@@ -30,7 +30,7 @@ if __name__ == "__main__":
     f = FirebaseWorker()
 
     print(f.get("data/historical"))
-    print(f.add("", {"state": 12}))
+    print(f.add("data/report", {"state": 12}))
     
 
 
