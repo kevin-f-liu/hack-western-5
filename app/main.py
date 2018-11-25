@@ -148,12 +148,12 @@ def get_report():
     """
     fw = FirebaseWorker()
     state = fw.get('state')
-    print(state)
-    if request.headers.get('ready_check'):
+    print(request.headers)
+    if request.headers.get('ready-check'):
         # state is processing when 1
         return jsonify(state == 1)
 
-    elif request.headers.get('data_request'):
+    elif request.headers.get('data-request'):
         # state is 2 when done
         if state == 2:
             data_json = fw.get("data/report")
