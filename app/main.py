@@ -148,6 +148,7 @@ def get_report():
     """
     fw = FirebaseWorker()
     state = fw.get('state')
+    print(state)
     if request.headers.get('ready_check'):
         # state is processing when 1
         return jsonify(state == 1)
@@ -159,7 +160,7 @@ def get_report():
             return jsonify(data_json)
         else:
             return jsonify(False)
-    return jsonify(False)
+    return jsonify(-1)
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
