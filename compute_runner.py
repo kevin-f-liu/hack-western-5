@@ -90,12 +90,12 @@ def process_output(vid_path):
 
     frames_dict = ja.get_new_data()
 
-    lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise="LUNGE")
+    lift_data = fc.check_form(len(frames_dict[0]), frames_dict, exercise="LUNGE")
 
     ## A this point should put out diagnostic json to output_data
-    print(lift_errors)
+    print(lift_data)
     with open('processed_output_data/data.json', 'w') as outfile:
-        json.dump({"Mistakes": lift_errors}, outfile)
+        json.dump(json.dumps({"lift_data": lift_data}), outfile)
 
 
 def main():

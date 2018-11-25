@@ -65,8 +65,15 @@ class FormCheck:
         joint_first_angular_derivatives,\
         joint_second_angular_derivatives = process_squat_data(frames, data)
         lift_errors = []
+        lift_data = {
+            "anatomy_features": important_anatomy_features,
+            "anatomy_joints": important_anatomy_joints,
+            "joint_rotation_rate": joint_first_angular_derivatives,
+            "joint_rotation_accel": joint_second_angular_derivatives
+        }
         # Find bottom out frame
         hip_y_vals = [coor[1] for coor in data[8]]
+        lift_data["hip_y"] = hip_y_vals
         lowest_hip = min(hip_y_vals)
         lowest_hip_frame = hip_y_vals.index(lowest_hip)
         depth_tol = 5
@@ -78,8 +85,7 @@ class FormCheck:
         # Use average of second derivatives
         tolerance = 5
         avg_rising_sd = 10* sum(joint_second_angular_derivatives["leg-back"][(lowest_hip_frame + 1):]) / (len(joint_second_angular_derivatives["leg-back"][(lowest_hip_frame + 1):]) + 1)
-        print(joint_second_angular_derivatives["leg-back"])
-        print("AVG RISING %s" % avg_rising_sd)
+        lift_data["avg_rising_rate"] = avg_rising_sd
         if avg_rising_sd < -1 * tolerance:
             lift_errors.append("WEAKHIPS")
         elif avg_rising_sd > tolerance:
@@ -91,7 +97,8 @@ class FormCheck:
         if len(lift_errors) == 0:
             lift_errors.append("GOODSQUAT")
 
-        return lift_errors
+        lift_data['errors'] = lift_errors
+        return lift_data
 
     
     def check_deadlift(self, frames, data):
