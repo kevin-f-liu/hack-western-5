@@ -18,7 +18,7 @@ from form_check import FormCheck
 from firebase_worker import FirebaseWorker
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"*": {"origins": "*"}})
 # mail = Mail(app)
 
 @app.route('/')
