@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template, request, redirect, make_response, jsonify
+from flask_cors import CORS
 from werkzeug import secure_filename
 import hashlib
 # import cv2
@@ -17,6 +18,7 @@ from form_check import FormCheck
 from firebase_worker import FirebaseWorker
 
 app = Flask(__name__)
+CORS(app)
 # mail = Mail(app)
 
 @app.route('/')
