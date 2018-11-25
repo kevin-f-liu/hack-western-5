@@ -71,6 +71,16 @@ def tips_for_exercises(errors):
                         good_lift = weaknesses.good_lifts[g]
     return tips, failures, good_lift
 
+def transfer_results(ppm):
+    """
+    Poll for completed data then pull it and store it into database of user
+    """
+    [data_content, video_content] = ppm.poll()
+
+    ppm.transfer_processed_data(data_content)
+    ppm.transfer_latest_video_ref(video_content)
+
+
 @app.route('/uploader', methods = ['GET', 'POST'])
 def uploaded_file():
     print("UPLOAD REQUEST")
@@ -97,7 +107,8 @@ def uploaded_file():
             fc = FormCheck(int(width), int(height))
 
             ppm.send_stream(video, f)
-            # ppm.poll()
+            
+            transfer_results(ppm)
 
             analyzed_video = ""
             for filename in os.listdir("input_video"):

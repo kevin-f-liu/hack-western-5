@@ -7,6 +7,7 @@ import subprocess
 import os, uuid, sys, time
 from azure.storage.blob import BlockBlobService, PublicAccess
 import cv2
+import json
 
 import weaknesses
 from pose_processing_manager import PoseProcessingManager
@@ -41,7 +42,7 @@ def uploadOutput(vidname, block_blob_service):
         for filename in os.listdir(localpath):
             full_path_to_file =os.path.join(localpath, filename)
             # Upload the created file, use local_file_name for the blob name
-            block_blob_service.create_blob_from_path(container_name, filename, full_path_to_file)
+            block_blob_service.create_blob_from_path(container_name, "%s-%s" % (filename, int(time.time() * 1000)), full_path_to_file)
             os.unlink(full_path_to_file)
         
 #        container_name='outputimages'
@@ -93,6 +94,8 @@ def process_output(vid_path):
 
     ## A this point should put out diagnostic json to output_data
     print(lift_errors)
+    with open('processed_output_data/data.json', 'w') as outfile:
+        json.dump({"Mistakes": lift_errors}, outfile)
 
 
 def main():
