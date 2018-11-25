@@ -96,33 +96,33 @@ def uploaded_file():
             #select_value = request.form.get('select_value')
             #vidcap = cv2.VideoCapture(vid_path)
 
-            width = 0
-            height = 0
+            # width = 0
+            # height = 0
             #if vidcap.isOpened():
             #    width = vidcap.get(3)
             #    height = vidcap.get(4)
 
-            ja = JsonAggregator("input_data")
+            # ja = JsonAggregator("input_data")
             ppm = PoseProcessingManager()
-            fc = FormCheck(int(width), int(height))
+            # fc = FormCheck(int(width), int(height))
 
             ppm.send_stream(video, f)
             
             transfer_results(ppm)
 
-            analyzed_video = ""
-            for filename in os.listdir("input_video"):
-                analyzed_video = os.path.join("input_video", filename)
-                print("GOT THE VIDEO ANALYZED %s" % analyzed_video)
+            # analyzed_video = ""
+            # for filename in os.listdir("input_video"):
+            #     analyzed_video = os.path.join("input_video", filename)
+            #     print("GOT THE VIDEO ANALYZED %s" % analyzed_video)
 
-            frames_dict = ja.get_new_data()
+            # frames_dict = ja.get_new_data()
 
             #lift_errors = fc.check_form(len(frames_dict[0]), frames_dict, exercise=select_value)
             #print(lift_errors)
             
             #vidcap = cv2.VideoCapture(analyzed_video)
             #success,image = vidcap.read()
-            count = 0
+            # count = 0
 
             #while success:  
             #    success,image = vidcap.read()
