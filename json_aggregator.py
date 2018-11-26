@@ -28,7 +28,10 @@ class JsonAggregator:
         self.pull_files()
         for f in self.files:
             file = json.load(open(f))
-            self.raw_keypoints.append(file['people'][0]["pose_keypoints_2d"])
+            try:
+                self.raw_keypoints.append(file['people'][0]["pose_keypoints_2d"])
+            except:
+                pass
     
     def pull_files(self):
         self.files = [f for f in glob.glob("%s/*.json" % self.subdirectory)]
